@@ -14,14 +14,14 @@ def mongo_connect(url):
         print("Mongo is connected")
         return conn
     except pymongo.errors.ConnectionFailure as e:
-        print("Could not connect to Mongo %s") % e
+        print("Could not connect to Mongo: %s") % e
 
 
 conn = mongo_connect(MONGO_URI)
 
 coll = conn[DATABASE][COLLECTION]
 
-documents = coll.find()
+documents = coll.find({"first": "douglas"})
 
 for doc in documents:
     print(doc)
